@@ -1,29 +1,64 @@
-import logo from './platzi.webp';
+import React from 'react';
 import './App.css';
+import { ToDoCounterMsg, } from './ToDoCounterMsg'
+import ToDoList from './ToDoList';
+import ToDoCreateButton from './ToDoCreateButton';
+import ToDoItem from './ToDoItem';
+import ToDoSearch from './ToDoSearch';
+
+
+const defaultToDos = [
+    {   
+        text: "Cortar cebolla",
+        completed: true
+    },
+    {   
+        text: "Hacer mercado",
+        completed: true
+    },
+    {   
+        text: "Estudiar programación ",
+        completed: true
+    },
+    {   
+        text: "Bañarme",
+        completed: false
+    }
+]
 
 function App() {
   return (
-    <div className="App">
+    <>
 
-      <TodoItem/>
+      <ToDoCounterMsg 
+        completed={ 16 }
+        total={ 20 }
+      />
+
+      <ToDoSearch />
 
 
-    </div>
+      <ToDoList>
+        { defaultToDos.map(toDo => (
+            <ToDoItem
+            key={ toDo.text }
+            text={ toDo.text }
+            completed={ toDo.completed }
+             />
+        )
+
+        )}
+      </ToDoList>
+
+      <ToDoCreateButton />
+
+
+
+    </>
+
   );
 }
 
-function TodoItem() {
-  return (
 
-    <li>
-
-      <span> v </span>
-      <p>Loorar con la llorona </p>
-      <span> X </span>
-
-    </li>
-
-  )
-}
 
 export default App;
