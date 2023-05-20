@@ -1,17 +1,19 @@
 import React from 'react';
 
-const ToDoItem = ( { text, completed }) => {
+const ToDoItem = ( props ) => {
     return (
 
         <>
 
-        <ul>
+        <li
+            className = 'TodoItem'>
 
-            <span> { completed  }</span>
-            <p>{ text } </p>
-            <span> X </span>
+            <span
+            className={`Icon Icon-check ${props.completed&&"Icon-check--active"}`}> V  { props.completed }  </span>
+            <p className={`TodoItem-p ${props.completed&&"TodoItem-p--complete"}`}>{ props.text } </p>
+            <span className="Icon Icon-delete"> X </span>
     
-        </ul>
+        </li>
 
         </>
     );

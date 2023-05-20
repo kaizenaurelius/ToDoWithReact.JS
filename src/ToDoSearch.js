@@ -1,10 +1,14 @@
 import React from 'react';
+import './ToDoSearch.css'
+
 
 const ToDoSearch = () => {
     return (
 
         
-        <input />
+        <input 
+            className='TodoSearch'
+        />
             
     );
 };

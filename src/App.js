@@ -1,10 +1,12 @@
 import React from 'react';
-import './App.css';
 import { ToDoCounterMsg, } from './ToDoCounterMsg'
 import ToDoList from './ToDoList';
 import ToDoCreateButton from './ToDoCreateButton';
 import ToDoItem from './ToDoItem';
 import ToDoSearch from './ToDoSearch';
+import './ToDoItem.css'
+import './ToDoList.css'
+
 
 
 const defaultToDos = [
