@@ -1,15 +1,11 @@
 import React from 'react';
 import './ToDoSearch.css'
-import { useState } from 'react';
 
 
 
-const ToDoSearch = () => {
-
-    const [searchValue, setSearchValue] = useState( '' );
+const ToDoSearch = ({ searchValue, setSearchValue }) => {
 
 
-    console.log("Los usarios buscaron " + searchValue)
     return (
 
         
