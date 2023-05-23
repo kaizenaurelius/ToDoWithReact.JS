@@ -9,9 +9,21 @@ const ToDoItem = ( props ) => {
             className = 'TodoItem'>
 
             <span
-            className={`Icon Icon-check ${props.completed&&"Icon-check--active"}`}> V  { props.completed }  </span>
+                className={`Icon Icon-check ${props.completed&&"Icon-check--active"}`}
+                onClick={ props.onCompleted }
+            > 
+            V  
+            { props.completed }  
+            </span>
             <p className={`TodoItem-p ${props.completed&&"TodoItem-p--complete"}`}>{ props.text } </p>
-            <span className="Icon Icon-delete"> X </span>
+            <span 
+                className="Icon Icon-delete"
+                onClick={props.onDeleted}
+            > 
+
+            X 
+
+            </span>
     
         </li>
 

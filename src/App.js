@@ -13,15 +13,15 @@ import './ToDoList.css'
 const defaultToDos = [
     {   
         text: "Cortar cebolla",
-        completed: true
+        completed: false
     },
     {   
         text: "Hacer mercado",
-        completed: true
+        completed: false
     },
     {   
         text: "Estudiar programación ",
-        completed: true
+        completed: false
     },
     {   
         text: "Bañarme",
@@ -29,7 +29,7 @@ const defaultToDos = [
     },
     {   
       text: "Ver a José Juan",
-      completed: true
+      completed: false
   }
 ]
 
@@ -53,11 +53,26 @@ function App() {
       const toDoText = toDo.text.toLowerCase();
       const SearchText = searchValue.toLowerCase();
       return toDoText.includes( SearchText)
-    }
-
-   
+    }   
   )
 
+  const completeToDo = ( text ) => {
+    const newToDos = [...toDos];
+    const toDoIndex = newToDos.findIndex(
+      (toDos) => toDos.text == text  //encontrará el arreglo que tenga el indice en el que el texto de ese arrglo sea igual al texto que entra por parametro
+    );
+    newToDos[toDoIndex].completed = true;
+    setTodos(newToDos);
+  }
+
+  const deleteToDo = ( text ) => {
+    const newToDos = [...toDos];
+    const toDoIndex = newToDos.findIndex(
+      (toDos) => toDos.text == text  //encontrará el arreglo que tenga el indice en el que el texto de ese arrglo sea igual al texto que entra por parametro
+    );
+    newToDos.splice(toDoIndex, 1) // métdo para cortar arryas, desde el elemeto con el indice indicado. Numero indica cuántos cortará
+    setTodos(newToDos);
+  }
 
 
 
@@ -81,6 +96,8 @@ function App() {
             key={ toDo.text }
             text={ toDo.text }
             completed={ toDo.completed }
+            onCompleted={ () => completeToDo(toDo.text) }
+            onDeleted={ () => deleteToDo(toDo.text) }
              />
         )
 
