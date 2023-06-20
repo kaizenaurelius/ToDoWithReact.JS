@@ -33,9 +33,20 @@ const defaultToDos = [
   }
 ]
 
-function App() {
+localStorage.setItem('TODOS_V1', JSON.stringify( defaultToDos ))
 
-  const [ toDos, setTodos ] = useState(defaultToDos);  // para  actualizqar los To Do´s
+function App() {
+  const localStorageToDos = localStorage.getItem('TODOS_V1')
+  let parsedToDos;
+
+  if (!localStorageToDos) {
+    localStorage.setItem('TODOS_V1', JSON.stringify( [] ))
+    parsedToDos = [];
+  } else {
+    parsedToDos = JSON.parse( localStorageToDos )
+  }
+
+  const [ toDos, setToDos ] = useState(parsedToDos);  // para  actualizqar los To Do´s
  
   const [searchValue, setSearchValue] = useState( '' );
 
@@ -56,13 +67,17 @@ function App() {
     }   
   )
 
+  const saveToDos = ( newToDos ) => {
+    localStorage.setItem('TODOS_V1', JSON.stringify( newToDos )) // Actualizando LocalStorage
+    setToDos( newToDos ) // actualizando estado
+  }
   const completeToDo = ( text ) => {
     const newToDos = [...toDos];
     const toDoIndex = newToDos.findIndex(
       (toDos) => toDos.text == text  //encontrará el arreglo que tenga el indice en el que el texto de ese arrglo sea igual al texto que entra por parametro
     );
     newToDos[toDoIndex].completed = true;
-    setTodos(newToDos);
+    saveToDos(newToDos);
   }
 
   const deleteToDo = ( text ) => {
@@ -71,7 +86,7 @@ function App() {
       (toDos) => toDos.text == text  //encontrará el arreglo que tenga el indice en el que el texto de ese arrglo sea igual al texto que entra por parametro
     );
     newToDos.splice(toDoIndex, 1) // métdo para cortar arryas, desde el elemeto con el indice indicado. Numero indica cuántos cortará
-    setTodos(newToDos);
+    saveToDos(newToDos);
   }
 
 
