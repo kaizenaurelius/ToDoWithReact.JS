@@ -35,18 +35,36 @@ const defaultToDos = [
 
 localStorage.setItem('TODOS_V1', JSON.stringify( defaultToDos ))
 
-function App() {
-  const localStorageToDos = localStorage.getItem('TODOS_V1')
-  let parsedToDos;
 
-  if (!localStorageToDos) {
-    localStorage.setItem('TODOS_V1', JSON.stringify( [] ))
-    parsedToDos = [];
+function useLocalStorage ( itemNane, initialValue ) {
+
+
+  const localStorageItem = localStorage.getItem(itemNane )
+  let parsedItem;
+
+  if (!localStorageItem) {
+    localStorage.setItem(itemNane, JSON.stringify( initialValue ))
+    parsedItem = [];
   } else {
-    parsedToDos = JSON.parse( localStorageToDos )
+    parsedItem = JSON.parse( localStorageItem )
+  };
+
+  //Estado interno
+  const [item, setItem] = useState( parsedItem);
+
+  const saveItem = ( newItem ) => {
+    localStorage.setItem(itemNane, JSON.stringify( newItem )) // Actualizando LocalStorage
+    setItem( newItem ) // actualizando estado
   }
 
-  const [ toDos, setToDos ] = useState(parsedToDos);  // para  actualizqar los To Do´s
+  return [ item, saveItem ]
+}
+
+
+function App() {
+
+
+  const [ toDos, saveToDos ] = useLocalStorage('TODOS_V1', defaultToDos);  // para  actualizqar los To Do´s
  
   const [searchValue, setSearchValue] = useState( '' );
 
@@ -67,10 +85,7 @@ function App() {
     }   
   )
 
-  const saveToDos = ( newToDos ) => {
-    localStorage.setItem('TODOS_V1', JSON.stringify( newToDos )) // Actualizando LocalStorage
-    setToDos( newToDos ) // actualizando estado
-  }
+
   const completeToDo = ( text ) => {
     const newToDos = [...toDos];
     const toDoIndex = newToDos.findIndex(
