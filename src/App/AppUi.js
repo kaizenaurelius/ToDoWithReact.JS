@@ -9,6 +9,7 @@ import { EmptyToDos } from '../EmptyToDos'
 import { ToDoContext } from '../ToDoContext';
 import React from 'react';
 import { Modal } from '../Modal';
+import { ToDoForm } from '../ToDoForm';
 
 
 
@@ -20,7 +21,8 @@ function AppUI(  ) {
       searchedToDos,
       completeToDo,
       deleteToDo,
-      openModal
+      openModal,
+      setOpenModal
         } = React.useContext( ToDoContext );
 
     return (
@@ -53,6 +55,7 @@ function AppUI(  ) {
 
     
           <ToDoCreateButton 
+            setOpenModal={ setOpenModal }
           />
 
 
@@ -60,8 +63,8 @@ function AppUI(  ) {
            { openModal && (
            
             <Modal>
-                      Agregar Todos 
-          </Modal>
+              <ToDoForm />
+            </Modal>
 
            )}           
         </>

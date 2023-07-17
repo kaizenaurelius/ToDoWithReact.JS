@@ -16,7 +16,7 @@ function ToDoProvider( { children })
 
     const [searchValue, setSearchValue] = useState( '' );
 
-    const [openModal, setOpenModal] = useState( true );
+    const [openModal, setOpenModal] = useState( false );
 
 
     //Estados derivados 
@@ -35,6 +35,15 @@ function ToDoProvider( { children })
     }   
     )
 
+    const addToDo = ( text ) => {
+        const newToDos = [...toDos];
+        newToDos.push({
+            text,
+            completed: false
+        })
+        saveToDos( newToDos );
+        
+    }
 
     const completeToDo = ( text ) => {
     const newToDos = [...toDos];
@@ -67,7 +76,8 @@ function ToDoProvider( { children })
             completeToDo,
             deleteToDo,
             openModal,
-            setOpenModal
+            setOpenModal,
+            addToDo
         } }>
 
             { children }

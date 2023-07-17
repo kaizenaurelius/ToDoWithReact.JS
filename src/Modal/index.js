@@ -1,12 +1,12 @@
 import React from "react";
 import  ReactDOM  from "react-dom";
-
+import './Modal.css';
 
 function Modal( { children } ) { //children indica que muestre cualquier contenido que enviemos por dentro
 
     return ReactDOM.createPortal(
 
-        <div className="Modal">
+        <div className="ModalBackground">
         
             { children }
 
