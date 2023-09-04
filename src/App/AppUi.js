@@ -39,9 +39,9 @@ function AppUI(  ) {
                         && <EmptyToDos/> }
 
 
-                    { searchedToDos.map(toDo => (
+                    { searchedToDos.map((toDo, index)  => (
                         <ToDoItem
-                        key={ toDo.text }
+                        key={ toDo.text + index}
                         text={ toDo.text }
                         completed={ toDo.completed }
                         onCompleted={ () => completeToDo(toDo.text) }

@@ -50,7 +50,7 @@ function ToDoProvider( { children })
     const toDoIndex = newToDos.findIndex(
     (toDos) => toDos.text === text  //encontrará el arreglo que tenga el indice en el que el texto de ese arrglo sea igual al texto que entra por parametro
     );
-    newToDos[toDoIndex].completed = true;
+    newToDos[toDoIndex].completed = !newToDos[toDoIndex].completed;
     saveToDos(newToDos);
     }
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import './ToDoItem.css'
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/solid'
+
 
 const ToDoItem = ( props ) => {
     return (
@@ -10,19 +12,19 @@ const ToDoItem = ( props ) => {
             className = 'TodoItem'>
 
             <span
-                className={`Icon Icon-check ${props.completed&&"Icon-check--active"}`}
+                className={`Icon Icon-check ${props.completed&&'Icon-check--active'}`}
                 onClick={ props.onCompleted }
             > 
-            V  
+            <CheckIcon></CheckIcon>  
             { props.completed }  
             </span>
-            <p className={`TodoItem-p ${props.completed&&"TodoItem-p--complete"}`}>{ props.text } </p>
+            <p className={`${props.completed?'TodoItem-p TodoItem-p--complete' :'TodoItem-p' }`}>{ props.text } </p>
             <span 
                 className="Icon Icon-delete"
                 onClick={props.onDeleted}
             > 
 
-            X 
+            <XMarkIcon></XMarkIcon>
 
             </span>
     

@@ -14,7 +14,21 @@ function ToDoForm( ) {
     } = React.useContext(ToDoContext);
 
 
-    
+    const onKeyPress = (event) => {
+        if (event.key === "Enter") {
+            event.preventDefault(); // Previene un salto de línea en el textarea
+            onSubmit(event);
+            console.log('tecla press')
+        }
+    };
+
+    const onKeyDown = ( event ) => {
+        if(event.key === "Escape") {
+            onCancel( event )
+            console.log('tecla press')
+        }
+    }
+
     const  onSubmit= ( event ) => {
         event.preventDefault();
         addToDo( newToDoValue );
@@ -37,6 +51,9 @@ function ToDoForm( ) {
                 placeholder='Cortar cebollas para el almuerzo'
                 value={ newToDoValue }
                 onChange={ onChange }
+                onKeyPress={onKeyPress}
+                onKeyDown={ onKeyDown }
+
             /> 
         <div className= 'ToDoForm-buttonContainer'>
         <button 
