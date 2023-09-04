@@ -30,9 +30,13 @@ function ToDoForm( ) {
     }
 
     const  onSubmit= ( event ) => {
-        event.preventDefault();
-        addToDo( newToDoValue );
-        setOpenModal(false);
+        if (newToDoValue.trim() === "") {
+            alert("El campo no puede estar vacío o contener solo espacios en blanco.");
+          } else{
+              event.preventDefault();
+              addToDo( newToDoValue );
+              setOpenModal(false);
+          }
     };
     
     const  onCancel= (  ) => {
@@ -48,6 +52,7 @@ function ToDoForm( ) {
         <form onSubmit={ onSubmit }>
             <label> Escribe tu nuevo To Do </label>
             <textarea 
+                autoFocus={true}
                 placeholder='Cortar cebollas para el almuerzo'
                 value={ newToDoValue }
                 onChange={ onChange }
